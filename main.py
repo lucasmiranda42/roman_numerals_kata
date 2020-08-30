@@ -1,6 +1,3 @@
-lookup = {1: "I", 5: "V", 10: "X", 50: "L", 100: "C", 500: "D", 1000: "M"}
-
-
 def to_decimal(number: str):
     """Converts a string containing a roman numeral into a decimal integer"""
 
@@ -63,4 +60,8 @@ def find_digit(digit, reverse, dec=False):
 
 def is_valid_roman(number: str):
     """Returns True if number is a valid Roman numeral"""
-    return number in [to_roman(i) for i in range(1, 4000)]
+    return number in valid_romans
+
+
+lookup = {1: "I", 5: "V", 10: "X", 50: "L", 100: "C", 500: "D", 1000: "M"}
+valid_romans = [to_roman(i) for i in range(1, 4000)]
