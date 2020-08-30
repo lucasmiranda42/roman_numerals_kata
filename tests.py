@@ -59,3 +59,30 @@ def test_valid_roman():
 
 def test_invalid_roman():
     assert not is_valid_roman("VIIIXL")
+
+
+def test_to_dec_basic():
+    assert to_decimal("I") == 1
+    assert to_decimal("V") == 5
+    assert to_decimal("X") == 10
+    assert to_decimal("L") == 50
+    assert to_decimal("C") == 100
+    assert to_decimal("D") == 500
+    assert to_decimal("M") == 1000
+
+
+def test_XI():
+    assert to_decimal("XI") == 11
+
+
+def test_MCCCDV():
+    assert to_decimal("MCCCLV") == 1355
+
+
+def test_IX():
+    assert to_decimal("IX") == 9
+
+
+def test_all_to_decimal():
+    for i in range(1, 3999):
+        assert i == to_decimal(to_roman(i))

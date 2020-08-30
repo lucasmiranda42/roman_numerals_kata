@@ -5,12 +5,17 @@ def to_decimal(number: str):
     """Converts a string containing a roman numeral into a decimal integer"""
 
     assert is_valid_roman(number), "Invalid Roman numeral"
-    pass
-
-
-def is_valid_roman(number: str):
-    """Returns True if number is a valid Roman numeral"""
-    return number in [to_roman(i) for i in range(1, 4000)]
+    lookrev = {v: k for k, v in lookup.items()}
+    decimal = 0
+    for i, rom in enumerate(number):
+        try:
+            if lookrev[number[i + 1]] <= lookrev[rom]:
+                decimal += lookrev[rom]
+            else:
+                decimal -= lookrev[rom]
+        except IndexError:
+            decimal += lookrev[rom]
+    return decimal
 
 
 def to_roman(number: int):
@@ -54,3 +59,8 @@ def find_digit(digit, reverse, dec=False):
         else:
             if i >= digit and (str(i)[0] == "1" if dec else True):
                 return i
+
+
+def is_valid_roman(number: str):
+    """Returns True if number is a valid Roman numeral"""
+    return number in [to_roman(i) for i in range(1, 4000)]
